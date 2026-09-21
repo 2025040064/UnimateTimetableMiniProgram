@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/timetable/index",
+    "pages/course/edit",
+    "pages/settings/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "轻课表",
+    "navigationBarBackgroundColor": "#f5f7fb",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f5f7fb",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
+
