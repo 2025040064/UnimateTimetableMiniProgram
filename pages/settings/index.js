@@ -1,10 +1,12 @@
 const { PERIOD_TIMES } = require('../../data/defaults');
 const {
   loadSettings,
+  loadCourses,
   resetAll,
   saveCourses,
   saveSettings
 } = require('../../utils/storage');
+const { confirmDelete, confirmReplace } = require('../../utils/confirm');
 
 Page({
   data: {
@@ -60,34 +62,21 @@ Page({
     setTimeout(() => wx.navigateBack(), 400);
   },
 
-  resetDemo() {
-    wx.showModal({
-      title: '恢复示例课表？',
-      content: '现有课表和设置会被示例数据覆盖，操作无法撤销。',
-      confirmText: '恢复',
-      confirmColor: '#d94747',
-      success: (result) => {
-        if (!result.confirm) return;
-        resetAll();
-        wx.showToast({ title: '已恢复示例课表', icon: 'success' });
-        setTimeout(() => wx.reLaunch({ url: '/pages/timetable/index' }), 400);
-      }
-    });
+  async resetDemo() {
+    const confirmed = await confirmReplace({ title: '恢复示例课表？', name: '脱敏示例课表', count: loadCourses().length });
+    if (!confirmed) return;
+    resetAll();
+    wx.showToast({ title: '已恢复示例课表', icon: 'success' });
+    setTimeout(() => wx.reLaunch({ url: '/pages/timetable/index' }), 400);
   },
 
-  clearCourses() {
-    wx.showModal({
-      title: '清空全部课程？',
-      content: '所有课程都会从本机删除，课表设置会保留。该操作无法撤销。',
-      confirmText: '清空',
-      confirmColor: '#d94747',
-      success: (result) => {
-        if (!result.confirm) return;
-        saveCourses([]);
-        wx.showToast({ title: '课程已清空', icon: 'success' });
-        setTimeout(() => wx.reLaunch({ url: '/pages/timetable/index' }), 400);
-      }
-    });
+  async clearCourses() {
+    const courses = loadCourses();
+    const confirmed = await confirmDelete({ title: '清空全部课程？', name: '全部课程', count: courses.length, recoverable: false });
+    if (!confirmed) return;
+    saveCourses([]);
+    wx.showToast({ title: '课程已清空', icon: 'success' });
+    setTimeout(() => wx.reLaunch({ url: '/pages/timetable/index' }), 400);
   }
 });
 

@@ -1,7 +1,7 @@
 {
   "appid": "touristappid",
-  "projectname": "unimate-timetable",
-  "description": "只包含课表功能的微信小程序",
+  "projectname": "unimate-campus-assistant",
+  "description": "Unimate 高校校园学习生活一站式智能助手微信小程序版",
   "compileType": "miniprogram",
   "libVersion": "3.9.2",
   "setting": {

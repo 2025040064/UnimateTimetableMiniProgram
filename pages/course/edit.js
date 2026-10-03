@@ -1,6 +1,7 @@
 const { COURSE_COLORS, courseColorIndex } = require('../../utils/colors');
 const { formatWeeks } = require('../../utils/weeks');
 const { loadCourses, loadSettings, saveCourses } = require('../../utils/storage');
+const { confirmDelete } = require('../../utils/confirm');
 
 const DAY_NAMES = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
@@ -122,18 +123,16 @@ Page({
     setTimeout(() => wx.navigateBack(), 400);
   },
 
-  remove() {
-    wx.showModal({
+  async remove() {
+    const confirmed = await confirmDelete({
       title: '删除这门课程？',
-      content: `${this.data.draft.name}\n${formatWeeks(this.data.draft.weeks)}内的显示都会被移除，删除后无法恢复。`,
-      confirmText: '删除',
-      confirmColor: '#d94747',
-      success: (result) => {
-        if (!result.confirm) return;
-        saveCourses(this.courses.filter((course) => course.id !== this.data.draft.id));
-        wx.navigateBack();
-      }
+      name: `${this.data.draft.name}（${formatWeeks(this.data.draft.weeks)}）`,
+      count: 1,
+      recoverable: false
     });
+    if (!confirmed) return;
+    saveCourses(this.courses.filter((course) => course.id !== this.data.draft.id));
+    wx.navigateBack();
   }
 });
 

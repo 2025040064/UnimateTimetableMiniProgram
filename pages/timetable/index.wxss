@@ -115,7 +115,7 @@
 .floating-actions {
   position: fixed;
   right: 28rpx;
-  bottom: 34rpx;
+  bottom: calc(126rpx + env(safe-area-inset-bottom));
   z-index: 20;
   display: flex;
   gap: 18rpx;

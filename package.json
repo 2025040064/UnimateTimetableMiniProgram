@@ -2,7 +2,7 @@
   "name": "unimate-timetable-miniprogram",
   "version": "1.0.0",
   "private": true,
-  "description": "基于 Unimate 课表体验制作的原生微信小程序",
+  "description": "Unimate 高校校园学习生活一站式智能助手微信小程序版",
   "scripts": {
     "test": "node --test tests/*.test.js"
   },

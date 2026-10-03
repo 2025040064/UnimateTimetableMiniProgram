@@ -1,6 +1,7 @@
 App({
   globalData: {
-    appName: '轻课表'
+    appName: 'Unimate',
+    schoolName: '北京化工大学'
   }
 });
 

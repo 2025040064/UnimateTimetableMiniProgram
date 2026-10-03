@@ -1,15 +1,33 @@
 {
   "pages": [
     "pages/timetable/index",
+    "pages/notes/index",
+    "pages/uni/index",
+    "pages/campus/index",
+    "pages/me/index",
     "pages/course/edit",
+    "pages/note/edit",
     "pages/settings/index"
   ],
   "window": {
-    "navigationBarTitleText": "轻课表",
-    "navigationBarBackgroundColor": "#f5f7fb",
+    "navigationBarTitleText": "Unimate",
+    "navigationBarBackgroundColor": "#f2f2f7",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#f5f7fb",
+    "backgroundColor": "#f2f2f7",
     "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8e8e93",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/timetable/index", "text": "课表" },
+      { "pagePath": "pages/notes/index", "text": "记事" },
+      { "pagePath": "pages/uni/index", "text": "Uni" },
+      { "pagePath": "pages/campus/index", "text": "校园" },
+      { "pagePath": "pages/me/index", "text": "我的" }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
